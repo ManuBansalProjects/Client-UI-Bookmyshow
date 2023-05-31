@@ -1,0 +1,64 @@
+<div class="container-fluid pt-4">
+        
+       
+
+        <div class="row">        
+
+            <div class="col-sm-2 col-4">
+                <div class="card mb-3 ms-4" style="border: none;">
+                    <div>
+                        <button class="dropdown-toggle text-start ps-4 py-2 text-dark bg-light shadow" style="width: 100%; min-width: 150px; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            Languages
+                    </button>    
+                    <div class="collapse" id="collapse1">
+                        <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                            <button (click)="sortMovies(language,languagesHashMap,'languages')" [ngClass]="{'bg-danger text-light': languagesHashMap.get(language)==1 , 'text-dark': languagesHashMap.get(language)==0 }"  class="ms-1 mt-2 filterItem" style="border: none;" *ngFor="let language of languages"> {{language}} </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3 ms-4" style="border: none;">
+                    <div>
+                        <button class="dropdown-toggle text-start ps-4 py-2 text-dark bg-light shadow" style="width: 100%; min-width: 150px; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            Genres
+                    </button>    
+                    <div class="collapse" id="collapse2">
+                        <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                            <button (click)="sortMovies(genre,genresHashMap,'genres')" [ngClass]="{'bg-danger text-light': genresHashMap.get(genre)==1 , 'text-dark': genresHashMap.get(genre)==0 }" class="ms-1 mt-2 filterItem" style="border: none" *ngFor="let genre of genres"> {{genre}} </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card mb-2 ms-4" style="border: none;">
+                    <div>
+                        <button class="dropdown-toggle text-start ps-4 py-2 text-dark bg-light shadow" style="width: 100%; min-width: 150px; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            Formats
+                    </button>    
+                    <div class="collapse" id="collapse3">
+                        <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                            <button (click)="sortMovies(myFormat,formatHashMap,'format')" [ngClass]="{'bg-danger text-light': formatHashMap.get(myFormat)==1 , 'text-dark': formatHashMap.get(myFormat)==0 }" class="ms-1 mt-2 filterItem" style="border: none" *ngFor="let myFormat of format"> {{myFormat}} </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-sm-8 col-12">
+                <div class="row justify-content-center">
+                    <div *ngFor="let movie of displayableMovies;"  class=" card m-3" style="width: 15rem; height: 400;">
+                        <img class="card-img-top" src="{{movie.movieposter}}" alt="Card image cap" height="280">
+                        <div class="card-body">
+                            <h5 class="card-title">{{movie.name}}</h5>
+                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> {{movie.descrption}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+

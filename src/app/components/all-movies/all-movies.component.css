@@ -1,0 +1,6 @@
+.filterItem{
+    border-radius: 25px;
+}
+.filterItem:hover{
+    background-color:rgb(220, 53, 69);
+}

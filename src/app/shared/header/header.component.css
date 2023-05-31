@@ -1,0 +1,8 @@
+.city{
+    text-decoration: none;
+    color: black;
+}
+.city:hover{
+    color: green;
+    text-decoration:underline;
+}

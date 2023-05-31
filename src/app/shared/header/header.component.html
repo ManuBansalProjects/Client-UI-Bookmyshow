@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light col">
+  <div class="container-fluid">
+      <a class="navbar-brand link-primary" href="/">Book My Show</a>
+
+      <input class="form-control" style="width: 40%" type="search" placeholder="Search" aria-label="Search">
+
+      <button class="dropdown-toggle btn btn-outline-success" (click)="openModal()" style="min-width: 100px"> 
+        <span *ngIf="!selectedCity.id else elseBlock">Select City</span>
+        <ng-template #elseBlock>
+          {{selectedCity.name}}
+        </ng-template>
+      </button>
+
+  </div>
+</nav>
+
+
+  
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Select City</h4>
+      <!-- <button type="button" class="" (click)="modal.dismiss()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+    </div>
+
+    <div class="modal-body">
+        
+      <div class="row">
+        <div *ngFor="let city of cities" class="col-6 text-center">
+          <a (click)="selectCity(city); modal.close()" style="cursor: pointer" class="city">{{city.name}}</a>
+        </div>
+      </div>
+
+    </div>
+    
+</ng-template>
+
+
+
+
+

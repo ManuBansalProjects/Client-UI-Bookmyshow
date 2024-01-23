@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row bg-dark text-white p-3">
+        <div class="col">
+            <h3>{{movie?.name}}</h3>
+            <p>{{day}} {{month}}, {{year}}</p>
+            <p>{{movie?.genres}}</p>
+        </div>
+    </div>
+
+    <div class="row" style="height: 60px; background-color:azure;">
+        <div class="col-1 align-items-center d-flex">
+            <select style="height: 70%; border: none; background-color: azure; border-radius: 30px;" class="shadow" (change)="changeDate($event)">
+                <option *ngFor="let date of screeningDate" value="{{date}}">{{date}}</option>
+            </select>
+        </div>
+
+        <div class="col-1 align-items-center d-flex">
+            <select style="height: 70%; border: none; background-color: azure; width: 100px; border-radius: 30px;" class="shadow text-center" (change)="changeFormat($event)">
+                <option *ngFor="let format of formats" value="{{format}}">{{format}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col m-4">
+
+            <div class="row bg-secondary" *ngFor="let cinema of filteredCinemas">
+                <div class="col">
+                    <div class="py-2 row">
+                        <div class="col-3 bg-success d-flex justify-content-between">
+                            <h4>{{cinema?.name}}</h4>
+                            <p type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setViewCinemaInfo(cinema)">More Info</p>
+                        </div>
+                        <div class="col align-items-center d-flex bg-info" >
+                            <a routerLink="/book-seat/{{movie.id}}/{{cinema.screens[0].id}}/{{selectedDate}}/{{tempSelectedTime}}" class="text-white p-1 ms-2" style="text-decoration: none; border: 1px solid black; border-radius: 7px;">09:00 am</a>
+                            <a class="text-white p-1 ms-2" style="text-decoration: none; border: 1px solid black; border-radius: 7px;">12:00 pm</a>
+                            <a class="text-white p-1 ms-2" style="text-decoration: none; border: 1px solid black; border-radius: 7px;">06:00 pm</a>
+                            <a class="text-white p-1 ms-2" style="text-decoration: none; border: 1px solid black; border-radius: 7px;">09:00 pm</a>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin-bottom: 0px;">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{viewCinemaInfo?.name}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{viewCinemaInfo?.address}}
+        </div>
+      </div>
+    </div>
+  </div>

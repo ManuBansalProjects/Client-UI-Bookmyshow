@@ -1,4 +1,17 @@
 <app-header></app-header>
+
+<div *ngIf="loader==true" class="d-flex justify-content-center vh-100 bg-secondary align-items-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+</div>
+
 <router-outlet></router-outlet>
+
 <app-footer></app-footer>
+
+
+
+
+
 

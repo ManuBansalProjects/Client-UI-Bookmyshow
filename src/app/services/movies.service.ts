@@ -17,4 +17,16 @@ export class MoviesService {
   getMoviesByCityId(cityId:number){
     return this.http.get(`${this.api}/movies/get-movies-by-cityid/${cityId}`);
   }
+
+  getAllUpcomingMovies(){
+    return this.http.get(`${this.api}/movies/get-all-upcoming-movies`);
+  }
+
+  getUpcomingMoviesByCityId(cityId:number){
+    return this.http.get(`${this.api}/movies/get-upcoming-movies-by-cityid/${cityId}`);
+  }
+
+  getMovie(movieId:number){
+    return this.http.get(`${this.api}/movies/get-movie/${movieId}`);
+  }
 }

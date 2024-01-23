@@ -6,12 +6,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class CitiesService {
 
-  api:string='http://localhost:3000';
+  api:string='http://localhost:3300';
 
   constructor(private http:HttpClient) { }
 
   getAllCities(){
-    return this.http.get(`${this.api}/cities/get-all-cities`);
+    //observe response is used to recieve the full response
+    return this.http.get(`${this.api}/cities/get-all-cities`,{observe: 'response'});
   }
 
  

@@ -1,3 +1,4 @@
+import { WeekDay } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { CitiesService } from 'src/app/services/cities.service';
@@ -15,7 +16,11 @@ export class HomepageComponent implements OnInit{
   movies:any[]=[];
   moviesToDisplay:any[]=[];
 
+  premiere:any[]=[];
+
   constructor(private moviesService: MoviesService, private citiesService: CitiesService, private utilityService: UtilityService){ }
+
+  loader:any;
 
   ngOnInit(): void {
     this.utilityService.city.subscribe(res=>{
@@ -25,6 +30,10 @@ export class HomepageComponent implements OnInit{
       else{
         this.getAllMovies();
       }
+    })
+
+    this.utilityService.loader.subscribe(res=>{
+      this.loader=res;
     })
   }
 
@@ -37,6 +46,7 @@ export class HomepageComponent implements OnInit{
       else{
         this.moviesToDisplay=this.movies;
       }
+      this.setPremiere();
     })
   }
 
@@ -49,7 +59,18 @@ export class HomepageComponent implements OnInit{
       else{
         this.moviesToDisplay=this.movies;
       }
+      this.setPremiere();
     })
+  }
+
+  setPremiere(){
+    this.premiere=[];
+    for(let movie of this.movies){
+      const date=new Date(movie.releaseddate);
+      if(date.getDay() == 5){
+        this.premiere.push(movie);
+      }
+    }  
   }
 
 }

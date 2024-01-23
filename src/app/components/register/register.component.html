@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row d-flex align-items-center">
+
+        <div class="col-sm-6 bg-dark pt-5" style="min-height: 91vh;">
+            
+            <div class="row justify-content-center">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="col-lg-6 col-md-8 col-sm-10 col-10">
+                    <div class="mb-3">
+                        <label class="text-light">Name <span class="link-danger">*</span></label>
+                        <input formControlName="name" [ngClass]="{'is-invalid': ( registerForm.controls['name'].touched && registerForm.controls['name'].invalid) || (registerForm.controls['name'].invalid && formInvalid)}" class="form-control form-control-md" type="text" placeholder="Enter Your Name">
+                        <div *ngIf="( registerForm.controls['name'].touched && registerForm.controls['name'].invalid) || (registerForm.controls['name'].invalid && formInvalid)" class="invalid-feedback">Please Enter Valid Name</div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label class="text-light">Email Address <span class="link-danger">*</span></label>
+                        <input formControlName="email" [ngClass]="{'is-invalid': ( registerForm.controls['email'].touched && registerForm.controls['email'].invalid) || (registerForm.controls['email'].invalid && formInvalid)}" class="form-control form-control-md"  type="email" placeholder="Enter Your Email">
+                        <div *ngIf="( registerForm.controls['email'].touched && registerForm.controls['email'].invalid) || (registerForm.controls['email'].invalid && formInvalid)" class="invalid-feedback">Please Enter valid Email</div>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="text-white">Password <span class="link-danger">*</span></label>
+                        <input formControlName="password" [ngClass]="{'is-invalid': ( registerForm.controls['password'].touched && registerForm.controls['password'].invalid) || (registerForm.controls['password'].invalid && formInvalid)}" class="form-control form-control-md"  type="password" placeholder="Enter Your Password">
+                        <div *ngIf="( registerForm.controls['password'].touched && registerForm.controls['password'].invalid) || (registerForm.controls['password'].invalid && formInvalid)" class="invalid-feedback">Please Enter valid Password</div>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="text-white">Confirm Password <span class="link-danger">*</span></label>
+                        <input formControlName="confirmpassword" [ngClass]="{'is-invalid': (registerForm.controls['confirmpassword'].touched && registerForm.controls['confirmpassword'].invalid) || (registerForm.controls['confirmpassword'].invalid && formInvalid) || (registerForm.value.password != registerForm.value.confirmpassword && registerForm.controls['confirmpassword'].dirty)}" class="form-control form-control-md"  type="password" placeholder="Please Confirm Password">
+                        <div class="invalid-feedback" *ngIf="(!registerForm.controls['password'].dirty || (registerForm.controls['password'].dirty && !registerForm.controls['confirmpassword'].dirty && registerForm.controls['confirmpassword'].touched && registerForm.value.confirmpassword=='' )) && ((registerForm.controls['confirmpassword'].touched && registerForm.controls['confirmpassword'].invalid) || (registerForm.controls['confirmpassword'].invalid && formInvalid))">Please Enter valid Confirm Password</div>
+                        <div class="invalid-feedback" *ngIf="(registerForm.value.password != registerForm.value.confirmpassword && registerForm.controls['password'].dirty && registerForm.controls['confirmpassword'].dirty)">Password Not Matched</div>
+                    </div>
+    
+                    <div class="mb-4">
+                        <button class="btn btn-primary w-100" type="submit">Submit</button>
+                    </div>
+
+                    
+                    <div class="text-white justify-content-center d-flex">
+                        <p>Or</p>
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-3">
+
+                        <p class="lead fw-normal mb-0 me-3 text-white">Register with</p>
+                        
+                        <!-- //google login -->
+                        <asl-google-signin-button *ngIf="!user"></asl-google-signin-button> 
+            
+                        <!-- <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-twitter"></i>
+                        </button>
+            
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-linkedin-in"></i>
+                        </button> -->
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="text-white">Already A User ?</p> 
+                        <a routerLink="/login">Please Login</a>
+                    </div>
+                </form>
+            </div>
+
+            
+        </div>
+
+        <div class="col">
+            <img class="img-fluid" src="https://getlogo.net/wp-content/uploads/2020/04/bookmyshow-logo-vector.png" alt="">
+        </div>
+
+    </div>
+</div>
+

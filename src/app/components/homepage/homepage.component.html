@@ -1,4 +1,4 @@
-<div class="container-fluid pt-2">
+<div class="container-fluid pt-2" *ngIf="loader==false">
 
     <div class="row mb-4">
         <div class="col-12">
@@ -43,23 +43,46 @@
         </div>
     </div>
 
-    <div  class="row justify-content-end mb-0">
+
+
+    <div  class="row px-2 pt-2">
         <div class="col">
           <h3>Recommended Movies</h3>
         </div>
-        <div *ngIf="movies.length>4" class="col-6 col-md-2 col-sm-4">
+        <div *ngIf="movies.length>4" class="col text-end">
             <a class="link-danger" routerLink="/explore/movies" style="text-decoration: none;">See All ></a>
         </div>
     </div>
 
-    <div class="row justify-content-center">        
-        <div *ngFor="let movie of moviesToDisplay"  class="col-12 col-lg-3 col-md-4 col-sm-6 card mt-1 mx-3" style="width: 18rem; height: 400; border: none;">
+    <div class="row justify-content-center mb-4">        
+        <div *ngFor="let movie of moviesToDisplay"  class="col-12 col-lg-3 col-md-4 col-sm-6 card mt-1 mx-3" style="width: 15rem; height: 400; border: none;">
             <img class="card-img-top" src="{{movie.movieposter}}" alt="Card image cap" height="250">
             <div class="card-body">
                 <h5 class="card-title">{{movie.name}}</h5>
                 <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> {{movie.descrption}} </p>
             </div>
         </div>
+    </div>
+
+
+
+    <div class="row px-2 pt-2 bg-dark">
+      <div class="col">
+        <h3 class="text-light">Premiere</h3>
+      </div>
+      <div class="col text-end">
+        <a routerLink="/explore/premiere" class="link-danger" style="text-decoration: none;">See All</a>
+      </div>
+    </div>
+
+    <div class="row pb-4 bg-dark justify-content-center">
+      <div *ngFor="let movie of premiere"  class="col-12 col-lg-3 col-md-4 col-sm-6 card mt-1 mx-3" style="width: 15rem; height: 400; border: none;">
+        <img class="card-img-top" src="{{movie.movieposter}}" alt="Card image cap" height="250">
+        <div class="card-body">
+            <h5 class="card-title">{{movie.name}}</h5>
+            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> {{movie.descrption}} </p>
+        </div>
+      </div>
     </div>
 
 </div>

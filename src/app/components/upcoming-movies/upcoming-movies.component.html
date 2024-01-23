@@ -1,0 +1,105 @@
+<div class="container-fluid pt-4">       
+
+    <div class="row justify-content-center">        
+
+        <div class="col-md-3 col-sm-4 col-6">
+
+            <div class="card mb-3" style="border: none;">
+                <div>
+                    <div class="text-start px-2 py-2 bg-light shadow d-flex justify-content-between" style="width: 100%; min-width: 195px; border: none;">
+                        <button class="dropdown-toggle text-dark bg-light"  style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            Languages
+                        </button>    
+                        <button (click)="clearAll('languages')" class="bg-light clearAll" style="border: none;">
+                            Clear All
+                        </button>
+                    </div>
+                <div class="collapse" id="collapse1">
+                    <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                        <button (click)="filterMovies(language,languagesHashMap,'languages')" [ngClass]="{'bg-danger text-light': languagesHashMap.get(language)==1 , 'text-dark': languagesHashMap.get(language)==0 }"  class="ms-1 mt-2 filterItem" style="border: none;" *ngFor="let language of languages"> {{language}} </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-3" style="border: none;">
+                <div>
+                    <div class="text-start px-2 py-2 bg-light shadow d-flex justify-content-between" style="width: 100%; min-width: 195px; border: none;">
+                        <button class="dropdown-toggle text-dark bg-light pe-3"  style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            Genres
+                        </button>    
+                        <button (click)="clearAll('genres')" class="bg-light text-danger" style="border: none;">
+                            Clear All
+                        </button>
+                    </div>   
+                <div class="collapse" id="collapse2">
+                    <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                        <button (click)="filterMovies(genre,genresHashMap,'genres')" [ngClass]="{'bg-danger text-light': genresHashMap.get(genre)==1 , 'text-dark': genresHashMap.get(genre)==0 }" class="ms-1 mt-2 filterItem" style="border: none" *ngFor="let genre of genres"> {{genre}} </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-3" style="border: none;">
+                <div>
+                    <div class="text-start px-2 py-2 bg-light shadow d-flex justify-content-between" style="width: 100%; min-width: 195px; border: none;">
+                        <button class="dropdown-toggle text-dark bg-light pe-3"  style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            Format
+                        </button>    
+                        <button (click)="clearAll('format')" class="bg-light text-danger" style="border: none;">
+                            Clear All
+                        </button>
+                    </div>  
+                <div class="collapse" id="collapse3">
+                    <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                        <button (click)="filterMovies(myFormat,formatHashMap,'format')" [ngClass]="{'bg-danger text-light': formatHashMap.get(myFormat)==1 , 'text-dark': formatHashMap.get(myFormat)==0 }" class="ms-1 mt-2 filterItem" style="border: none" *ngFor="let myFormat of format"> {{myFormat}} </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-3" style="border: none;">
+                <div>
+                    <div class="text-start px-2 py-2 bg-light shadow d-flex justify-content-between" style="width: 100%; min-width: 195px; border: none;">
+                        <button class="dropdown-toggle text-dark bg-light pe-3"  style="border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                            Release Month
+                        </button>    
+                        <button (click)="clearAll('releaseDate')" class="bg-light text-danger" style="border: none;">
+                            Clear All
+                        </button>
+                    </div>  
+                    <div class="collapse" id="collapse4">
+                        <div class="bg-secondary p-3 text-start text-success bg-light" style="border: none; width: 100%; min-width: 150px;">
+                            <button (click)="filterMovies(date,releaseDateHashMap,'releaseDate')" [ngClass]="{'bg-danger text-light': releaseDateHashMap.get(date)==1 , 'text-dark': releaseDateHashMap.get(date)==0 }" class="ms-1 mt-2 filterItem" style="border: none" *ngFor="let date of releaseDate"> {{date}} </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        
+        <div class="col">
+
+            <div class="row mb-5 py-2 mx-5 d-flex align-items-center shadow" style="border-radius: 5px;">
+                <div class="col"> <h3>Now Showing</h3> </div>
+                <div class="col d-flex justify-content-end"> <a routerLink="/explore/movies" class="link-danger" style="text-decoration: none;">In Cinemas Near You  ></a> </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div *ngFor="let movie of displayableMovies;"  class=" card m-3 px-0" style="width: 13rem; height: 400;">
+                    <img class="card-img-top" src="{{movie.movieposter}}" alt="Card image cap" height="280">
+                    <div class="card-body">
+                        <h5 class="card-title">{{movie.name}}</h5>
+                        <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> {{movie.descrption}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

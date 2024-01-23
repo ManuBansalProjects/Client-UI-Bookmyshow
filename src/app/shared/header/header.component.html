@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light col">
   <div class="container-fluid">
-      <a class="navbar-brand link-primary" href="/">Book My Show</a>
+      <a class="navbar-brand link-primary" routerLink="/">Book My Show</a>
 
       <input class="form-control" style="width: 40%" type="search" placeholder="Search" aria-label="Search">
 
@@ -11,6 +11,22 @@
         </ng-template>
       </button>
 
+      <div>
+        <a *ngIf="!token" class="link-danger me-4" style="text-decoration: none; font-size: large;" routerLink="login">Sign In</a>
+
+        <button style="border: none; background-color:transparent;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <svg *ngIf="!token" style="height:40px" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+
+          <svg *ngIf="token && user && !user.photoUrl" xmlns="http://www.w3.org/2000/svg" style="height:30px" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+
+          <img *ngIf="token && user && user.photoUrl" src="{{user.photoUrl}}" style="height:40px; border-radius: 25px;" alt="">
+        </button>
+      </div>
   </div>
 </nav>
 
@@ -40,3 +56,50 @@
 
 
 
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header bg-dark">
+    <!-- <h5 *ngIf="!token || !user.name" class="offcanvas-title text-light" id="offcanvasRightLabel">Hi Guest</h5>
+    <h5 *ngIf="token && user.name" class="offcanvas-title text-light" id="offcanvasRightLabel">{{user.name}}</h5> -->
+
+    <h5 *ngIf="!token" class="offcanvas-title text-light" id="offcanvasRightLabel">Hi Guest</h5>
+
+    <h5 *ngIf="token" class="offcanvas-title text-light" id="offcanvasRightLabel">
+      <span *ngIf="user?.photoUrl else elseBlock"> <img style="height:40px; border-radius: 25px;" src="{{user.photoUrl}}"> </span>
+      <ng-template #elseBlock>
+        <svg xmlns="http://www.w3.org/2000/svg" style="height:30px" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+      </ng-template>
+
+      <span *ngIf="user && user.name else elseBlock2"> {{user.name}} </span>
+      <ng-template #elseBlock2>
+        {{user?.email}}
+      </ng-template>
+    </h5>
+
+    <button class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <a *ngIf="token" style="text-decoration:none;width:100%;height:50px;color:black;cursor:pointer;"class="d-flex align-items-center ps-4"data-bs-dismiss="offcanvas">Notifications</a>
+    <hr *ngIf="token" class="my-1">
+
+    <a *ngIf="token" style="text-decoration:none;width:100%;height:50px;color:black;cursor:pointer;"class="d-flex align-items-center ps-4"data-bs-dismiss="offcanvas">Your Orders</a>
+    <hr *ngIf="token" class="my-1">
+
+    <a *ngIf="token" routerLink="/user-account" style="text-decoration:none;width:100%;height:50px;color:black;cursor:pointer;"class="d-flex align-items-center ps-4"data-bs-dismiss="offcanvas">Account and Settings</a>
+    <hr *ngIf="token" class="my-1">
+
+    <a *ngIf="token" style="text-decoration:none;width:100%;height:50px;color:black;cursor:pointer;"class="d-flex align-items-center ps-4"data-bs-dismiss="offcanvas">Rewards</a>
+    <hr *ngIf="token" class="my-1">
+
+    <a style="text-decoration:none;width:100%;height:50px;color:black;cursor:pointer;"class="d-flex align-items-center ps-4"data-bs-dismiss="offcanvas">Help and Support</a>
+    <hr class="my-1">
+
+    <a (click)="signOutUser()" *ngIf="token" data-bs-dismiss="offcanvas" style="text-decoration: none; width: 100%; height: 50px; background-color: red; color:white; position: absolute; bottom: 0px; left: 0px; cursor: pointer;" class="justify-content-center d-flex align-items-center">
+      Sign Out
+    </a>
+  </div>
+</div>

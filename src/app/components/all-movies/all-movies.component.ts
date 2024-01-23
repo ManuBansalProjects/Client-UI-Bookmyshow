@@ -14,12 +14,13 @@ export class AllMoviesComponent implements OnInit{
   languages:string[]=[];  genres:string[]=[];  format:string[]=[];
   languagesHashMap=new Map();  genresHashMap=new Map();  formatHashMap=new Map();
   
-  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute, private utilityService: UtilityService){ }
+  constructor(private moviesService: MoviesService, private utilityService: UtilityService){ }
 
   ngOnInit(): void {
     this.utilityService.city.subscribe(res=>{
       if(res.id){
         this.getMoviesByCityId(res.id);
+        
       }else{
         this.getAllMovies();
       }
@@ -36,6 +37,7 @@ export class AllMoviesComponent implements OnInit{
   getMoviesByCityId(cityId:number){
     this.moviesService.getMoviesByCityId(cityId).subscribe((response:any)=>{
       this.displayableMovies = this.movies =response.movies;
+      console.log(this.movies);
       this.setFiltersOnLoad();
     })
   }
@@ -69,7 +71,7 @@ export class AllMoviesComponent implements OnInit{
     return {arr, hashMap};
   }
 
-  sortMovies(item:string,hashMap:any, type:string){
+  filterMovies(item:string, hashMap:any, type:string){
       if(hashMap.get(item)==0){
         hashMap.set(item,1);
         //now filter the current movie array by given item and hashMap
@@ -121,4 +123,23 @@ export class AllMoviesComponent implements OnInit{
       return !notExists;
   }
  
+  clearAll(type:string){
+    if(type=='languages'){
+      this.languagesHashMap.forEach((value,key)=>{
+        this.languagesHashMap.set(key,0);
+      })
+    }
+    else if(type=='genres'){
+      this.genresHashMap.forEach((value,key)=>{
+        this.genresHashMap.set(key,0);
+      })
+    }
+    else{
+      this.formatHashMap.forEach((value,key)=>{
+        this.formatHashMap.set(key,0);
+      })
+    }
+    this.filterMoviesFromStart();
+  }
+
 }

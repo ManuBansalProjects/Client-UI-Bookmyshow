@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+    <div class="row px-3" style="height: 80vh; background-color: black; align-items: center;">
+        <div class="col-3">
+            <img src="{{movie.movieposter}}" alt="" style="height: 70vh; width: 100%;">
+        </div>
+
+        <div class="col text-white" style="height: 50vh; width: 100%;">
+            <h3 class="mb-5">{{movie.name}}</h3>
+            <p class="mb-0">{{movie.format}}</p>
+            <p class="mb-0">{{movie.languages}}</p>
+            <p class="mb-0">{{movie.genres}}</p>
+            <p>{{day}} {{month}}, {{year}}</p>
+
+            <button class="btn btn-outline-danger btn-lg" style="margin-top: 50px" (click)="bookTickets()">Book Tickets</button>
+        </div>
+    </div>
+
+    <div class="row px-3 py-4 bg-white">
+        <div class="col">
+            <h5 class="mb-2">About the Movie</h5>
+            <p>{{movie.descrption}}</p>
+        </div>
+    </div>
+</div>

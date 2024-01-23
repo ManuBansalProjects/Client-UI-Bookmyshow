@@ -1,0 +1,23 @@
+<div class="container-fluild">
+    <div class="row bg-dark text-light ps-md-4 py-4 pe-md-4">
+        <div class="col">
+            <h3> {{cinema.name}} </h3>
+            <h5> Address -> {{cinema.address}} </h5>
+            <h6> Contact -> {{cinema.contactnumber}} </h6>
+        </div>
+
+        <div class="col text-end">
+            <h5>Select Day</h5>
+            <select class="dropdown-toggle btn btn-outline-light"  
+            (change)="changeDate($event)">
+                <option *ngFor="let date of dates" value="{{date}}"> {{date}} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row bg-secondary">
+        <div class="row">
+
+        </div>
+    </div>
+</div>
